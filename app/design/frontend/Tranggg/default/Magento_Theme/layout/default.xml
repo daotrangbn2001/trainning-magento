@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header-wrapper">
+            <container name="header.content" label="Header Content" htmlTag="div" htmlClass="header-content"
+                       after="header.content.top">
+                <container name="header.content.right" label="Header Content Right" htmlTag="div"
+                           htmlClass="header-content-right" after="-">
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="header.content.right">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer.search"
+                   template="Magento_Theme::account/search.phtml" before="-">
+            </block>
+            <block class="Magento\Customer\Block\Account\Customer" name="customer.account"
+                   template="Magento_Theme::account/customer.phtml" after="customer.account">
+            </block>
+        </referenceBlock>
+        <move element="header.panel.wrapper" destination="customer.account" before="-"/>
+        <move element="top.search" destination="header-wrapper" after="-"/>
+        <referenceBlock name="advanced-search-link" remove="true"/>
+
+        <referenceContainer name="footer-container">
+            <container name="top.footer" label="Top Footer" htmlTag="div" htmlClass="top-footer"
+                       before="footer">
+            </container>
+            <container name="bottom.footer" label="Bottom Footer" htmlTag="div" htmlClass="bottom-footer"
+                       after="-">
+            </container>
+        </referenceContainer>
+        <referenceContainer name="top.footer">
+            <container name="left.top.footer" label="Left Top Footer" htmlTag="div" htmlClass="left-top-footer"
+                       before="-">
+            </container>
+            <container name="right.top.footer" label="Right Top Footer" htmlTag="div" htmlClass="right-top-footer"
+                       after="-">
+                    <block class="Magento\Cms\Block\Block" name="right_footer_top">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">right_footer_top</argument>
+                        </arguments>
+                    </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <container name="content.footer" label="Content Footer">
+                <block class="Magento\Cms\Block\Block" name="content_top_footer">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">content_top_footer</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <move element="toggle-nav" destination="header.content" before="-"/>
+        <move element="logo" destination="header.content" before="header.content.right"/>
+        <move element="header.panel.wrapper" destination="header.content.right" after="minicart"/>
+        <move element="minicart" destination="header.content.right" after="-"/>
+        <move element="form.subscribe" destination="left.top.footer" after="tittle_newsletter"/>
+        <move element="copyright" destination="bottom.footer"/>
+        <move element="copyright" destination="bottom.footer"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+    </body>
+</page>

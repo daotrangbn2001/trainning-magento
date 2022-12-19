@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.stock.sku" destination="product.info.form.options"
+              before="product.info.options.wrapper.bottom"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.howToUse"
+                   template="Magento_Catalog::product/view/attribute.phtml" after="product.info.overview">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getHowToUse</argument>
+                    <argument name="at_code" xsi:type="string">how_to_use</argument>
+                    <argument name="css_class" xsi:type="string">howToUse</argument>
+                    <argument name="at_label" xsi:type="string">default</argument>
+                    <argument name="add_attribute" xsi:type="string">itemprop="howToUse"</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
